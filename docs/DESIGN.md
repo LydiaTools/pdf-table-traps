@@ -12,3 +12,7 @@ This is a test kit with a measured report viewer, not another converter or annot
 Review of the first plan: a large full-page PDF would shrink the table into unreadable text. The default source view therefore uses a clearly labelled, unaltered PDF region rendered directly from the source page. The full original PDF remains downloadable. Do not paint labels over the source or move values; red cells belong only to the parsed-output table.
 
 Report labels are bilingual. Source fixture text stays as authored. All user-supplied strings are escaped; file contents never become executable HTML. The demo is a viewer for measured outputs, not a live parser, and must say so.
+
+## Public demo handoff
+
+After the measured result, offer the next real task: open the repository Quick Start, download the fixed v0.1.0 source/fixture kit, or write a rule for an existing conversion. Preserve the current colors and report layout. Add one compact, bilingual handoff below the reports; do not add a new marketing hero, pop-up, analytics or links to generic user-exported HTML reports.
