@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "name": "prose",
+  "checks": [
+    {
+      "id": "table-count",
+      "kind": "table_count",
+      "equals": 0
+    }
+  ]
+}

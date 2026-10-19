@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "suite": "borderless",
+  "source_name": "borderless.pdfplumber.json",
+  "status": "fail",
+  "counts": {
+    "pass": 0,
+    "fail": 1,
+    "unknown": 3
+  },
+  "parsed_table_count": 0,
+  "findings": [
+    {
+      "id": "table-count",
+      "kind": "table_count",
+      "expected": 1,
+      "actual": 0,
+      "status": "fail",
+      "reason": "table_count_mismatch",
+      "selector": {
+        "id": "table-count",
+        "kind": "table_count",
+        "equals": 1
+      }
+    },
+    {
+      "id": "unit-price-1",
+      "kind": "cell",
+      "expected": "64.00",
+      "actual": null,
+      "status": "unknown",
+      "reason": "table_missing",
+      "selector": {
+        "id": "unit-price-1",
+        "kind": "cell",
+        "table": 1,
+        "row_key": "Material",
+        "row": "Cedar mulch fine-grade",
+        "column": "Unit price ($)",
+        "equals": "64.00"
+      }
+    },
+    {
+      "id": "unit-price-2",
+      "kind": "cell",
+      "expected": "88.00",
+      "actual": null,
+      "status": "unknown",
+      "reason": "table_missing",
+      "selector": {
+        "id": "unit-price-2",
+        "kind": "cell",
+        "table": 1,
+        "row_key": "Material",
+        "row": "Screened compost",
+        "column": "Unit price ($)",
+        "equals": "88.00"
+      }
+    },
+    {
+      "id": "unit-price-3",
+      "kind": "cell",
+      "expected": "145.00",
+      "actual": null,
+      "status": "unknown",
+      "reason": "table_missing",
+      "selector": {
+        "id": "unit-price-3",
+        "kind": "cell",
+        "table": 1,
+        "row_key": "Material",
+        "row": "River gravel",
+        "column": "Unit price ($)",
+        "equals": "145.00"
+      }
+    }
+  ],
+  "unsupported": [],
+  "scope": "Only user-supplied checks under NFC/whitespace normalization. Not document-wide accuracy, source verification, OCR or certification."
+}

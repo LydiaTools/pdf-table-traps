@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "suite": "ruled",
+  "source_name": "ruled.markitdown.md",
+  "status": "fail",
+  "counts": {
+    "pass": 1,
+    "fail": 3,
+    "unknown": 0
+  },
+  "parsed_table_count": 1,
+  "findings": [
+    {
+      "id": "table-count",
+      "kind": "table_count",
+      "expected": 1,
+      "actual": 1,
+      "status": "pass",
+      "reason": "table_count_match",
+      "selector": {
+        "id": "table-count",
+        "kind": "table_count",
+        "equals": 1
+      }
+    },
+    {
+      "id": "unit-price-1",
+      "kind": "cell",
+      "expected": "64.00",
+      "actual": "12.5",
+      "status": "fail",
+      "reason": "cell_mismatch",
+      "selector": {
+        "id": "unit-price-1",
+        "kind": "cell",
+        "table": 1,
+        "row_key": "Material",
+        "row": "Cedar mulch",
+        "column": "Unit price ($)",
+        "equals": "64.00"
+      },
+      "location": {
+        "table": 1,
+        "row": 1,
+        "column": 2
+      }
+    },
+    {
+      "id": "unit-price-2",
+      "kind": "cell",
+      "expected": "88.00",
+      "actual": "3.25",
+      "status": "fail",
+      "reason": "cell_mismatch",
+      "selector": {
+        "id": "unit-price-2",
+        "kind": "cell",
+        "table": 1,
+        "row_key": "Material",
+        "row": "Screened compost",
+        "column": "Unit price ($)",
+        "equals": "88.00"
+      },
+      "location": {
+        "table": 1,
+        "row": 2,
+        "column": 2
+      }
+    },
+    {
+      "id": "unit-price-3",
+      "kind": "cell",
+      "expected": "145.00",
+      "actual": "1.8",
+      "status": "fail",
+      "reason": "cell_mismatch",
+      "selector": {
+        "id": "unit-price-3",
+        "kind": "cell",
+        "table": 1,
+        "row_key": "Material",
+        "row": "River gravel",
+        "column": "Unit price ($)",
+        "equals": "145.00"
+      },
+      "location": {
+        "table": 1,
+        "row": 3,
+        "column": 2
+      }
+    }
+  ],
+  "unsupported": [],
+  "scope": "Only user-supplied checks under NFC/whitespace normalization. Not document-wide accuracy, source verification, OCR or certification."
+}

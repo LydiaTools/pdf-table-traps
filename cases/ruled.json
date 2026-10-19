@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "name": "ruled",
+  "checks": [
+    {
+      "id": "table-count",
+      "kind": "table_count",
+      "equals": 1
+    },
+    {
+      "id": "unit-price-1",
+      "kind": "cell",
+      "table": 1,
+      "row_key": "Material",
+      "row": "Cedar mulch",
+      "column": "Unit price ($)",
+      "equals": "64.00"
+    },
+    {
+      "id": "unit-price-2",
+      "kind": "cell",
+      "table": 1,
+      "row_key": "Material",
+      "row": "Screened compost",
+      "column": "Unit price ($)",
+      "equals": "88.00"
+    },
+    {
+      "id": "unit-price-3",
+      "kind": "cell",
+      "table": 1,
+      "row_key": "Material",
+      "row": "River gravel",
+      "column": "Unit price ($)",
+      "equals": "145.00"
+    }
+  ]
+}

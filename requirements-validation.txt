@@ -1,0 +1,4 @@
+-r requirements.txt
+reportlab==4.4.9
+markitdown[pdf]==0.1.8
+pdfplumber==0.11.10

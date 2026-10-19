@@ -1,0 +1,5 @@
+*.pdf binary
+*.png binary
+# Preserve unmodified measured outputs, including their original line endings.
+measured/* -text
+measured/*.md whitespace=-blank-at-eof,-blank-at-eol
