@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "suite": "prose",
+  "source_name": "prose.pdf-inspector.md",
+  "status": "pass",
+  "counts": {
+    "pass": 1,
+    "fail": 0,
+    "unknown": 0
+  },
+  "parsed_table_count": 0,
+  "findings": [
+    {
+      "id": "table-count",
+      "kind": "table_count",
+      "expected": 0,
+      "actual": 0,
+      "status": "pass",
+      "reason": "table_count_match",
+      "selector": {
+        "id": "table-count",
+        "kind": "table_count",
+        "equals": 0
+      }
+    }
+  ],
+  "unsupported": [],
+  "scope": "Only user-supplied checks under NFC/whitespace normalization. Not document-wide accuracy, source verification, OCR or certification."
+}

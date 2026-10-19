@@ -1,0 +1,2 @@
+-r requirements.txt
+pdf-inspector==1.25.2

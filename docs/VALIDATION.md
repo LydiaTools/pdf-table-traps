@@ -23,7 +23,11 @@ These are assertion counts, not accuracy percentages. A report with a mismatch t
 
 The recorded outputs were run again through the project runner after the checker was implemented; source and raw output hashes matched the initial isolated extraction. Tests assert the six bounded outcomes, not the general quality of either library. Remote CI is a separate execution, not proof of real-user adoption.
 
-## What this does not measure
+## Additional integration: pdf-inspector 1.25.2
+
+The current source also includes `scripts/run_pdf_inspector.py` and [`measured/pdf-inspector-1.25.2/`](../measured/pdf-inspector-1.25.2/). A separate local macOS arm64 / Python 3.12.14 run used `process_pdf(path)` defaults on the identical original fixtures and rule files. Ruled: 4 match; borderless: 1 match and 3 mismatch; prose: 1 zero-table check match. Raw output and source hashes are recorded. The pinned integration has its own Ubuntu CI job and artifact; inspect each run for its observed platform/results. None of these extra measurements changes the original six-panel viewer or fixed v0.1.0 release. [Reproduction instructions](PDF_INSPECTOR.md)
+
+## Measurement limits
 
 Real-world accuracy, unseen layouts, OCR, scans, merged/multi-level headers, source authentication, full-document meaning, Arabic/RTL behavior, tuned extraction settings, semantic numeric equivalence, formula correctness or downstream model answers. No user trial or Star outcome has been established by this test.
 

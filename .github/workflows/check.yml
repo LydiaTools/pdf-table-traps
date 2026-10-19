@@ -32,3 +32,19 @@ jobs:
           name: measured-smoke-evidence
           path: artifacts/
           if-no-files-found: error
+  pdf-inspector:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --only-binary=:all: -r requirements-inspector.txt
+      - name: Reproduce the pinned integration (a mismatch is an expected result)
+        run: python -m scripts.run_pdf_inspector --output artifacts/pdf-inspector --expect-observed
+      - uses: actions/upload-artifact@v7.0.2
+        if: always()
+        with:
+          name: pdf-inspector-evidence
+          path: artifacts/pdf-inspector/
+          if-no-files-found: error

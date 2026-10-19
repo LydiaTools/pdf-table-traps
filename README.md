@@ -18,6 +18,7 @@ That's one measured synthetic case, not a claim about every document or parser v
 
 - **3 original PDF fixtures:** a ruled table, a wrapped row without borders, and prose that should remain prose.
 - **2 measured local extraction paths:** MarkItDown 0.1.8 and pdfplumber 0.11.10 defaults; six saved reports.
+- **An additional pinned integration:** pdf-inspector 1.25.2 on the same PDFs, with raw outputs and a reproducible CLI example. [Run it](docs/PDF_INSPECTOR.md).
 - **Keyed cell assertions:** match an exact row label and column header, then compare the value. Finding a number elsewhere doesn't pass.
 - **Explicit uncertainty:** missing or ambiguous headers/rows, raw HTML tables and image cells need review.
 - **CLI + JSON + standalone HTML reports.** Inspect saved outputs without a converter, model key or server.
@@ -120,6 +121,10 @@ The runner reads the three committed PDFs, uses local defaults, disables MarkItD
 | Prose control | Zero-table check matches | Zero-table check matches |
 
 These are **three small synthetic cases**, not a representative benchmark, accuracy ranking or evaluation of OCR, scans, tuned settings, plugins or paid services. Both paths have limitations. A matched prose table-count check says nothing about prose transcription accuracy. [Run evidence](measured/run.json)
+
+### Another local engine, the same checks
+
+[pdf-inspector](https://github.com/firecrawl/pdf-inspector) already provides local PDF parsing and table detection. We measured its pinned **1.25.2** `process_pdf` path separately: the supplied checks match for the ruled table; the borderless table has **three cell mismatches**; the prose zero-table check matches. This is not a ranking. [Reproduce the integration and inspect the raw outputs](docs/PDF_INSPECTOR.md). These additional files are in the current source checkout; the six-panel viewer and fixed v0.1.0 ZIP retain the original two-path measurements.
 
 ## Why another repository?
 

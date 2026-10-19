@@ -1,0 +1,51 @@
+{
+  "captured_at": "2026-10-19T19:51:03.106243+00:00",
+  "engine": "pdf-inspector",
+  "version": "1.25.2",
+  "python": "3.12.14",
+  "platform": "Darwin",
+  "machine": "arm64",
+  "entrypoint": "process_pdf(path), default local non-OCR; no credentials or OCR runtime supplied.",
+  "scope": "Three original synthetic fixtures and supplied checks, not a representative accuracy ranking.",
+  "results": [
+    {
+      "case": "ruled",
+      "status": "pass",
+      "counts": {
+        "pass": 4,
+        "fail": 0,
+        "unknown": 0
+      },
+      "pdf_sha256": "f51bb87190c7f2a6bba2f556aaacc5f0d0c337749555e810025706383b8ec0e4",
+      "output_sha256": "ddf5ab4966ad4b26c569a96681914bc51900cf4c679780967aa39ec9704a9191",
+      "pdf_type": "text_based",
+      "page_count": 1
+    },
+    {
+      "case": "borderless",
+      "status": "fail",
+      "counts": {
+        "pass": 1,
+        "fail": 3,
+        "unknown": 0
+      },
+      "pdf_sha256": "478c849f69c0f16defdf1f63e52bc76a7f8857d9cfdb42789c07c03d5d16c688",
+      "output_sha256": "786246bb9bfb1be1d1abea999078e678cebf3de79522a5f245808d3175543142",
+      "pdf_type": "text_based",
+      "page_count": 1
+    },
+    {
+      "case": "prose",
+      "status": "pass",
+      "counts": {
+        "pass": 1,
+        "fail": 0,
+        "unknown": 0
+      },
+      "pdf_sha256": "4618fab9ac73afead588cc203f29477ca81e2e19d3b5341789ee681729276bbe",
+      "output_sha256": "77c164fcb787232309d3e4d69cb35923755feeb1ac9aefd0d343038bebe4f686",
+      "pdf_type": "text_based",
+      "page_count": 1
+    }
+  ]
+}
