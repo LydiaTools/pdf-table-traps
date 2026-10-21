@@ -44,7 +44,8 @@ def main():
              bi('Use these checks before your next parser upgrade.', '下次升级转换器前，用这些样本先检查一遍。'),
              '</h2><p>' + bi('Get the source and fixtures to run a local check. For your own output, supply values you have checked against the original document.', '获取源码与样本，在本机运行检查。检查自己的输出时，请先对照原件确认预期值。') + '</p>',
              '<nav aria-label="Use PDF Table Traps">',
-             '<a class="primary" href="https://github.com/LydiaTools/pdf-table-traps#try-a-known-failure">' + bi('Source & quick start', '源码与快速上手') + '</a>',
+             '<a class="primary" href="try.html">' + bi('Try your own output', '试试自己的转换结果') + '</a>',
+             '<a href="https://github.com/LydiaTools/pdf-table-traps#try-a-known-failure">' + bi('Source & quick start', '源码与快速上手') + '</a>',
              '<a href="https://github.com/LydiaTools/pdf-table-traps/releases/tag/v0.1.0">' + bi('Download v0.1.0 kit', '下载 v0.1.0 测试集') + '</a>',
              '<a href="https://github.com/LydiaTools/pdf-table-traps#check-your-own-output">' + bi('Write your own rule', '为自己的文件编写规则') + '</a>',
              '</nav></section>']

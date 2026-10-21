@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light">
+  <title>Try a table check · PDF Table Traps</title>
+  <link rel="stylesheet" href="try.css">
+  <script src="try.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="PDF Table Traps home">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span>PDF Table Traps</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="./"><span data-en>Measured report</span><span data-zh>实测报告</span></a>
+      <button id="language" class="language" type="button">中文</button>
+      <a href="https://github.com/LydiaTools/pdf-table-traps">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="opening">
+      <div>
+        <h1><span data-en>Did this value keep its column?</span><span data-zh>这个值还在正确的列里吗？</span></h1>
+        <p><span data-en>Check one important value in the Markdown your PDF parser produced.</span><span data-zh>检查 PDF 转换结果中的一个关键值是否仍对应正确的行和列。</span></p>
+      </div>
+      <p class="sample-note"><span class="sample-dot" aria-hidden="true"></span><span data-en>Preloaded: measured synthetic output · MarkItDown 0.1.8</span><span data-zh>预载：MarkItDown 0.1.8 合成样本实测输出</span></p>
+    </section>
+
+    <section class="workbench" aria-label="Table cell check">
+      <form id="check-form" class="inputs">
+        <div class="field-grid field-grid-two">
+          <label for="table-number"><span data-en>Table</span><span data-zh>表格序号</span>
+            <input id="table-number" name="table" type="number" min="1" max="100" value="1" required>
+          </label>
+          <label for="row-key"><span data-en>Row key header</span><span data-zh>行标识列名</span>
+            <input id="row-key" name="row-key" type="text" value="Material" required>
+          </label>
+          <label for="row-value"><span data-en>Row value</span><span data-zh>行标识值</span>
+            <input id="row-value" name="row-value" type="text" value="Cedar mulch" required>
+          </label>
+          <label for="column-name"><span data-en>Column to check</span><span data-zh>要检查的列名</span>
+            <input id="column-name" name="column" type="text" value="Unit price ($)" required>
+          </label>
+          <label for="expected-value" class="expected-field"><span data-en>Value in the original PDF</span><span data-zh>原 PDF 中的值</span>
+            <input id="expected-value" name="expected" type="text" value="64.00" required>
+          </label>
+        </div>
+
+        <label for="markdown" class="markdown-label"><span data-en>Converted Markdown table</span><span data-zh>转换后的 Markdown 表格</span></label>
+        <textarea id="markdown" name="markdown" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="input-help"></textarea>
+        <div class="form-actions">
+          <button class="primary" type="submit"><span data-en>Check this cell</span><span data-zh>检查这个单元格</span></button>
+          <button id="load-sample" class="sample-button" type="button"><span data-en>Reset sample</span><span data-zh>恢复示例</span></button>
+        </div>
+        <p id="input-help" class="local-note"><span class="lock-mark" aria-hidden="true">⌑</span><span data-en>No upload or server save. Reloading clears the text.</span><span data-zh>不会上传或由服务器保存；刷新页面会清空文本。</span></p>
+      </form>
+
+      <section id="result" class="result" data-state="fail" aria-labelledby="result-heading">
+        <div class="result-heading">
+          <div>
+            <p class="result-kicker"><span data-en>Cell check</span><span data-zh>单元格检查</span></p>
+            <h2 id="result-heading" aria-live="polite"><span data-en>The value does not match.</span><span data-zh>单元格值不符。</span></h2>
+          </div>
+          <span id="status-badge" class="status-badge">Mismatch</span>
+        </div>
+        <p id="result-reason" class="result-reason" aria-live="polite"><span data-en>The row and header were found, but the value is different.</span><span data-zh>已找到目标行和列，但单元格值不同。</span></p>
+        <div class="comparison" aria-label="Expected and observed values">
+          <div><span data-en>Expected</span><span data-zh>原件预期</span><strong id="expected-display">64.00</strong></div>
+          <span class="comparison-rule" aria-hidden="true"></span>
+          <div><span data-en>Found under this header</span><span data-zh>该列实际值</span><strong id="observed-display">12.5</strong></div>
+        </div>
+        <div class="table-output">
+          <div class="table-output-heading"><h3><span data-en>Parsed table</span><span data-zh>解析出的表格</span></h3><span id="table-label">Table 1</span></div>
+          <div id="table-preview" class="table-scroll"></div>
+        </div>
+        <p class="scope-note"><span data-en>One user-supplied check. This does not verify the whole PDF, OCR or the parser's overall accuracy.</span><span data-zh>只检查一项使用者提供的预期值，不代表整份 PDF、OCR 或转换器总体准确。</span></p>
+      </section>
+    </section>
+
+    <footer>
+      <p><span data-en>Supports Markdown pipe tables. For local PDF extraction, CLI checks and saved reports, see the</span><span data-zh>网页仅支持 Markdown 管道表格。查看本地 PDF 抽取、命令行检查与报告方式，请访问</span> <a href="https://github.com/LydiaTools/pdf-table-traps#try-a-known-failure"><span data-en>source and quick start</span><span data-zh>源码与快速上手</span></a><span data-en>.</span><span data-zh>。</span></p>
+    </footer>
+  </main>
+</body>
+</html>

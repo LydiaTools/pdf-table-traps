@@ -4,7 +4,7 @@
 
 3 份原创 PDF、明确到行和列的预期值，以及可以复跑的转换结果。先验证关键值还对应谁，再把 Markdown 送进 AI、搜索或数据处理流程。
 
-[查看真实结果](https://lydiatools.github.io/pdf-table-traps/)（右上角切换中文） · [English](README.md) · [下载 v0.1.0](https://github.com/LydiaTools/pdf-table-traps/releases/tag/v0.1.0) · [验证范围](docs/VALIDATION.md)
+[在线检查自己的转换结果](https://lydiatools.github.io/pdf-table-traps/try.html) · [查看实测报告](https://lydiatools.github.io/pdf-table-traps/)（右上角切换中文） · [English](README.md) · [下载 v0.1.0](https://github.com/LydiaTools/pdf-table-traps/releases/tag/v0.1.0) · [验证范围](docs/VALIDATION.md)
 
 ![真实报告：原件单价为 64.00，输出的单价列却是 12.5](docs/assets/report-zh.png)
 
@@ -20,7 +20,8 @@
 - 按“行标识 + 列名”检查值；数字出现在别处不能冒充检查通过。
 - 缺行、重复名称、缺列、歧义或不支持的结构会显示需要核查。
 - 命令行、JSON 与独立 HTML 报告；检查已保存输出不需要转换器、模型密钥或服务器。
-- 中英文报告标签。在线页面只查看已保存结果，不是实时转换器。
+- 浏览器内单元格检查：粘贴 Markdown 结果，对照原件核验一个行标识、列名和值。只在当前标签页检查，不解析 PDF，也不上传文本。
+- 中英文界面。实测报告页展示已保存结果，在线检查器是独立页面。
 
 ## 先体验一个应该失败的检查
 

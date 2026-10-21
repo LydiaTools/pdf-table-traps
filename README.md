@@ -4,7 +4,7 @@
 
 Three original PDFs, explicit row-and-column checks, and measured outputs you can reproduce before trusting a PDF-to-Markdown pipeline.
 
-[See the measured reports](https://lydiatools.github.io/pdf-table-traps/) · [中文](README.zh-CN.md) · [Download v0.1.0](https://github.com/LydiaTools/pdf-table-traps/releases/tag/v0.1.0) · [What was tested](docs/VALIDATION.md)
+[Try your own output](https://lydiatools.github.io/pdf-table-traps/try.html) · [See the measured reports](https://lydiatools.github.io/pdf-table-traps/) · [中文](README.zh-CN.md) · [Download v0.1.0](https://github.com/LydiaTools/pdf-table-traps/releases/tag/v0.1.0) · [What was tested](docs/VALIDATION.md)
 
 ![Actual report: the source price is 64.00, but the parsed Unit price cell contains 12.5](docs/assets/report-en.png)
 
@@ -22,7 +22,8 @@ That's one measured synthetic case, not a claim about every document or parser v
 - **Keyed cell assertions:** match an exact row label and column header, then compare the value. Finding a number elsewhere doesn't pass.
 - **Explicit uncertainty:** missing or ambiguous headers/rows, raw HTML tables and image cells need review.
 - **CLI + JSON + standalone HTML reports.** Inspect saved outputs without a converter, model key or server.
-- **English/Chinese report labels.** The online page only views saved results; it is not a live converter.
+- **A browser-only cell checker.** Paste Markdown output and compare one row/header/value against a value you verified in the source. It checks in the tab; it does not parse PDFs or upload text.
+- **English/Chinese labels.** The measured report page shows saved results; the checker is a separate page.
 
 ## Try a known failure
 

@@ -22,7 +22,7 @@ const server = createServer(async (req, res) => {
     const filename = pathname === '/_standalone.html' ? standalone : path.resolve(root, 'docs', '.' + (pathname === '/' ? '/index.html' : pathname));
     assert.ok(filename === standalone || filename.startsWith(path.join(root, 'docs') + path.sep));
     const data = await readFile(filename);
-    const types = { '.html': 'text/html', '.png': 'image/png', '.pdf': 'application/pdf', '.json': 'application/json' };
+    const types = { '.html': 'text/html', '.png': 'image/png', '.pdf': 'application/pdf', '.json': 'application/json', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8' };
     res.writeHead(200, { 'content-type': types[path.extname(filename)] || 'text/plain' }); res.end(data);
   } catch { res.writeHead(404); res.end('Not found'); }
 });
@@ -76,8 +76,83 @@ try {
   assert.equal(await page.locator('.value strong').nth(0).innerText(), '64.00');
   await page.locator('#language').click();
   assert.equal(await page.locator('html').getAttribute('lang'), 'zh-CN');
+
+  const playground = await context.newPage();
+  await playground.setViewportSize({ width: 1440, height: 1000 });
+  playground.on('pageerror', err => errors.push(err.message));
+  await playground.goto(base + '/try.html');
+  const finding = playground.locator('#result');
+  assert.equal(await finding.getAttribute('data-state'), 'fail');
+  assert.equal(await playground.locator('#expected-display').innerText(), '64.00');
+  assert.equal(await playground.locator('#observed-display').innerText(), '12.5');
+  assert.equal(await playground.locator('td.selected-cell').innerText(), '12.5');
+  assert.deepEqual(await playground.locator('.comparison span[data-en]').evaluateAll(items => items.map(el => getComputedStyle(el).display !== 'none')), [true, true]);
+  assert.deepEqual(await playground.locator('.comparison span[data-zh]').evaluateAll(items => items.map(el => getComputedStyle(el).display !== 'none')), [false, false]);
+  await playground.screenshot({ path: path.join(screenshotFolder, 'playground-en.png'), fullPage: true });
+  await playground.locator('#language').click();
+  assert.equal(await playground.locator('html').getAttribute('lang'), 'zh-CN');
+  assert.equal(await playground.locator('#result-heading').innerText(), '单元格值不符。');
+  assert.deepEqual(await playground.locator('.comparison span[data-zh]').evaluateAll(items => items.map(el => getComputedStyle(el).display !== 'none')), [true, true]);
+  assert.deepEqual(await playground.locator('.comparison span[data-en]').evaluateAll(items => items.map(el => getComputedStyle(el).display !== 'none')), [false, false]);
+  await playground.screenshot({ path: path.join(screenshotFolder, 'playground-zh.png'), fullPage: true });
+  await playground.locator('#language').click();
+
+  await playground.locator('#row-key').fill('Item');
+  await playground.locator('#row-value').fill('Cedar');
+  await playground.locator('#column-name').fill('Unit price');
+  await playground.locator('#expected-value').fill('64.00');
+  await playground.locator('#markdown').fill('| Item | Unit price |\n| --- | --- |\n| Pine | 18.00 |\n| Cedar | 64.00 |');
+  await playground.locator('#check-form button[type="submit"]').click();
+  assert.equal(await finding.getAttribute('data-state'), 'pass', 'row order must not affect a keyed check');
+
+  await playground.locator('#row-key').fill('row_key');
+  await playground.locator('#row-value').fill('user_id_42');
+  await playground.locator('#column-name').fill('score_value');
+  await playground.locator('#expected-value').fill('40_000');
+  await playground.locator('#markdown').fill('| row_key | score_value |\n| --- | --- |\n| user_id_42 | 40_000 |');
+  await playground.locator('#check-form button[type="submit"]').click();
+  assert.equal(await finding.getAttribute('data-state'), 'pass', 'underscores inside identifiers and values must stay literal');
+
+  await playground.locator('#row-key').fill('Material');
+  await playground.locator('#row-value').fill('Cedar mulch');
+  await playground.locator('#column-name').fill('Unit price');
+  await playground.locator('#expected-value').fill('64.00');
+  await playground.locator('#markdown').fill('| Material | Unit price |\n| --- | --- |\n| **Cedar mulch** | **64.00** |');
+  await playground.locator('#check-form button[type="submit"]').click();
+  assert.equal(await finding.getAttribute('data-state'), 'pass', 'space-delimited emphasis must preserve the cell value');
+
+  await playground.locator('#markdown').fill('| Material | Unit price |\n| --- |\n| Cedar | 64.00 |');
+  await playground.locator('#check-form button[type="submit"]').click();
+  assert.equal(await finding.getAttribute('data-state'), 'unknown', 'a delimiter row with a different column count must fail closed');
+
+  await playground.locator('#markdown').fill('| Material | Unit price |\n| --- | --- |\n| Cedar mulch | 64 |');
+  await playground.locator('#check-form button[type="submit"]').click();
+  assert.equal(await finding.getAttribute('data-state'), 'fail', 'numeric formatting differences must remain visible');
+
+  await playground.locator('#row-value').fill('Cedar | bark');
+  await playground.locator('#markdown').fill('| Material | Unit price |\n| --- | --- |\n| `Cedar | bark` | 64.00 |');
+  await playground.locator('#row-key').fill('Material');
+  await playground.locator('#column-name').fill('Unit price');
+  await playground.locator('#check-form button[type="submit"]').click();
+  assert.equal(await finding.getAttribute('data-state'), 'pass', 'a pipe inside an inline code span must stay in its cell');
+
+  await playground.locator('#markdown').fill('```md\n| Material | Unit price |\n| --- | --- |\n| Cedar | 64.00 |\n```');
+  await playground.locator('#check-form button[type="submit"]').click();
+  assert.equal(await finding.getAttribute('data-state'), 'unknown', 'tables inside code fences are not parsed');
+
+  await playground.locator('#markdown').fill('| Material | Unit price |\n| --- | --- |\n| <img src=x onerror=alert(1)> | 64.00 |');
+  await playground.locator('#check-form button[type="submit"]').click();
+  assert.equal(await finding.getAttribute('data-state'), 'unknown', 'HTML cells must fail closed');
+  assert.equal(await playground.locator('#table-preview img').count(), 0, 'user-supplied text must never become HTML');
+  await playground.setViewportSize({ width: 390, height: 844 });
+  await playground.goto(base + '/try.html');
+  assert.equal(await playground.locator('#result').getAttribute('data-state'), 'fail');
+  const playgroundMobileOverflow = await playground.evaluate(() => document.documentElement.scrollWidth > innerWidth);
+  assert.equal(playgroundMobileOverflow, false, 'the playground must fit a 390px viewport');
+  await playground.screenshot({ path: path.join(screenshotFolder, 'playground-mobile.png'), fullPage: true });
+
   assert.deepEqual(external, []); assert.deepEqual(errors, []);
-  const result = { status: 'pass', panels: 6, downloaded_pdf_sha256: sha(await readFile(pdf)), external_http_requests: external.length, page_errors: errors.length, mobile_overflow: false, output, screenshotFolder };
+  const result = { status: 'pass', panels: 6, playground_cases: 9, downloaded_pdf_sha256: sha(await readFile(pdf)), external_http_requests: external.length, page_errors: errors.length, mobile_overflow: playgroundMobileOverflow, output, screenshotFolder };
   await writeFile(path.join(output, 'result.json'), JSON.stringify(result, null, 2) + '\n');
   process.stdout.write(JSON.stringify(result) + '\n');
 } finally { await browser.close(); await new Promise(resolve => server.close(resolve)); }
