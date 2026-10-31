@@ -8,6 +8,10 @@ On 2026-11-01 we converted both with local **firecrawl-anydoc 0.2.4**, using its
 
 Our [three supplied checks](cases/continuation/rules.json) ask for the `Count` of `Plant-01`, `Plant-09` and `Plant-17` in the first table. The single-header output returns **1 match, 2 unknown** (exit 2): the latter rows cannot be found in that table. The control returns **3 matches** (exit 0). Unknown means the checker cannot verify the supplied relationship; it does not automatically establish why or identify every affected row. Review the original and all output tables.
 
+![Actual report showing two checks need review and Plant-09 and Plant-17 rendered as headers in separate tables](assets/continuation-report.png)
+
+*Actual report for the original synthetic sample; the full table and findings are available in the linked report.*
+
 The related [upstream report](https://github.com/firecrawl/anydoc/issues/214) describes first rows being omitted from a different multi-page fixture. A [pdf-inspector fix](https://github.com/firecrawl/pdf-inspector/pull/648) was open when checked on 2026-11-01. Our independently generated example has a different observed output: the labels remain but are treated as headers. We have not tested that proposed fix or inferred that it solves this case. This small synthetic comparison is not a benchmark or a claim about other PDF layouts.
 
 ## Reproduce
