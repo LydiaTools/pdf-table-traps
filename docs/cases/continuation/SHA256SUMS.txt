@@ -1,0 +1,2 @@
+8623f8d2907448bba0dcae18e0f48f6c016dcecf0f0755e91f698d58238a8d4e  docs/cases/continuation/single-header.pdf
+42316d2df20f5445c2b99403524638461c8d1959ce40634f4d564858a5c296e5  docs/cases/continuation/repeat-header.pdf
