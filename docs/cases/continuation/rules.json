@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "name": "Three page-start rows",
+  "checks": [
+    {
+      "id": "plant-01-count",
+      "kind": "cell",
+      "table": 1,
+      "row_key": "Item",
+      "row": "Plant-01",
+      "column": "Count",
+      "equals": "21"
+    },
+    {
+      "id": "plant-09-count",
+      "kind": "cell",
+      "table": 1,
+      "row_key": "Item",
+      "row": "Plant-09",
+      "column": "Count",
+      "equals": "29"
+    },
+    {
+      "id": "plant-17-count",
+      "kind": "cell",
+      "table": 1,
+      "row_key": "Item",
+      "row": "Plant-17",
+      "column": "Count",
+      "equals": "37"
+    }
+  ]
+}

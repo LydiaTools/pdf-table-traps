@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "suite": "Three page-start rows",
+  "source_name": "single-header.md",
+  "status": "unknown",
+  "counts": {
+    "pass": 1,
+    "fail": 0,
+    "unknown": 2
+  },
+  "parsed_table_count": 3,
+  "findings": [
+    {
+      "id": "plant-01-count",
+      "kind": "cell",
+      "expected": "21",
+      "actual": "21",
+      "status": "pass",
+      "reason": "cell_match",
+      "selector": {
+        "id": "plant-01-count",
+        "kind": "cell",
+        "table": 1,
+        "row_key": "Item",
+        "row": "Plant-01",
+        "column": "Count",
+        "equals": "21"
+      },
+      "location": {
+        "table": 1,
+        "row": 1,
+        "column": 2
+      }
+    },
+    {
+      "id": "plant-09-count",
+      "kind": "cell",
+      "expected": "29",
+      "actual": null,
+      "status": "unknown",
+      "reason": "row_missing_or_ambiguous",
+      "selector": {
+        "id": "plant-09-count",
+        "kind": "cell",
+        "table": 1,
+        "row_key": "Item",
+        "row": "Plant-09",
+        "column": "Count",
+        "equals": "29"
+      }
+    },
+    {
+      "id": "plant-17-count",
+      "kind": "cell",
+      "expected": "37",
+      "actual": null,
+      "status": "unknown",
+      "reason": "row_missing_or_ambiguous",
+      "selector": {
+        "id": "plant-17-count",
+        "kind": "cell",
+        "table": 1,
+        "row_key": "Item",
+        "row": "Plant-17",
+        "column": "Count",
+        "equals": "37"
+      }
+    }
+  ],
+  "unsupported": [],
+  "scope": "Only user-supplied checks under NFC/whitespace normalization. Not document-wide accuracy, source verification, OCR or certification.",
+  "input_sha256": "b2057ed1842d08772ac880e407c6fcd93519dad85acf3aac8b09147f35263f73"
+}

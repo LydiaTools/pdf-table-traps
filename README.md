@@ -18,6 +18,7 @@ That's one measured synthetic case, not a claim about every document or parser v
 
 - **3 original PDF fixtures:** a ruled table, a wrapped row without borders, and prose that should remain prose.
 - **A separate two-page positional-text case:** [see why extracted character columns can drift](docs/POSITIONAL_COLUMNS.md) even when PDF coordinates match. This is not part of the six measured reports or the v0.1.0 ZIP.
+- **A three-page continuation case:** [see why all item labels can survive while two rows become Markdown headers](docs/CONTINUATION.md). This measured example was added after the v0.2.0 preview.
 - **2 measured local extraction paths:** MarkItDown 0.1.8 and pdfplumber 0.11.10 defaults; six saved reports.
 - **An additional pinned integration:** pdf-inspector 1.25.2 on the same PDFs, with raw outputs and a reproducible CLI example. [Run it](docs/PDF_INSPECTOR.md).
 - **Keyed cell assertions:** match an exact row label and column header, then compare the value. Finding a number elsewhere doesn't pass.
