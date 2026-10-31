@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "name": "Positioned two-page example: source-checked Cedar prices",
+  "checks": [
+    {"id": "page-1-cedar-price", "kind": "cell", "table": 1, "row_key": "Material", "row": "Cedar", "column": "Unit price", "equals": "64.00"},
+    {"id": "page-2-cedar-price", "kind": "cell", "table": 2, "row_key": "Material", "row": "Cedar", "column": "Unit price", "equals": "64.00"}
+  ]
+}

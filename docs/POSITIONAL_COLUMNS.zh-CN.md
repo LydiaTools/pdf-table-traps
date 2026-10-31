@@ -25,4 +25,18 @@ python3 -c 'import pdfplumber; p=pdfplumber.open("fixtures/positional-two-page.p
 
 重建 PDF 可安装 `reportlab==4.4.9`，再运行 `python3 scripts/generate_positional.py --out /tmp/positional-two-page.pdf`，输出路径必须不存在。仓库中 PDF 的 SHA-256 是 `0938b3d14f6acbaeb0ecb40395fe6ce843d338f57117c60c1b591b9062b1b50d`。
 
-PDF Table Traps 本身不会解析 PDF 文本或推断这些列的位置。将文件转换为支持的 Markdown 或 JSON 表格后，才可以用现有检查器把选定单元格与原件中核实的值进行比较。
+## 试用位置文本提取
+
+如果文本型表格的每页布局一致，且每行只有一行文字，可以手动指定页面区域和列边界，让可选工具按坐标分组。先在虚拟环境中安装检查器和固定版本的 PDF 依赖，然后运行：
+
+```sh
+python -m pip install -r requirements.txt -r requirements-positioned.txt
+mkdir -p artifacts
+python -m scripts.positional_table fixtures/positional-two-page.pdf --inspect-page 1 --output artifacts/positioned-words.json
+python -m scripts.positional_table fixtures/positional-two-page.pdf --region 0,60,612,500 --edges 0,200,350,612 --headers 'Material,Quantity,Unit price' --output artifacts/positioned.json --evidence artifacts/positioned-evidence.json
+python -m table_traps check --input artifacts/positioned.json --format tables-json --rules cases/positional-two-page.json
+```
+
+坐标查看文件列出所选页面尺寸及各词的边界坐标，可用来选择区域和列边界；文件含有该页文字。提取结果按页生成表格；证据文件保留每行的页码、顶部坐标和提取内容。本例共提取四行，两页中 Cedar 单价的两项检查均匹配。输出文件必须是新文件。换成自己的 PDF 时，先用 PDF 工具查看页面，再填写该文件的区域、列边界和已经对照原件确认的预期值；坐标单位为 PDF 点，以页面左上为起点。`--edges` 必须以区域左右边界为首尾，数量比列名多一。文字与区域边界或列边界相交、任一页区域为空或区域超出页面时，工具会停止。
+
+这个工具使用简单的坐标分组，适合文本型 PDF 的**单行表格**；每页采用相同区域和列边界，最多 100 页。它不自动识别表格、不推断表头、不合并换行、不做 OCR，也不会替你核实原件。`--row-tolerance` 控制同一行文字顶部坐标允许相差的点数，默认 3 点。行对齐、字体、旋转、重复表头和靠近边界的文字仍可能影响结果，请对照证据文件与原 PDF 核查。规则通过只代表你指定的值匹配，不代表全文正确。工具位于当前源码，不包含在旧 v0.1.0 ZIP 中。

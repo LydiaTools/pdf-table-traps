@@ -4,7 +4,7 @@
 
 3 份实测的原创 PDF、明确到行和列的预期值，以及可以复跑的转换结果。先验证关键值还对应谁，再把 Markdown 送进 AI、搜索或数据处理流程。
 
-[在线检查自己的转换结果](https://lydiatools.github.io/pdf-table-traps/try.html) · [查看实测报告](https://lydiatools.github.io/pdf-table-traps/)（右上角切换中文） · [English](README.md) · [下载 v0.1.0](https://github.com/LydiaTools/pdf-table-traps/releases/tag/v0.1.0) · [验证范围](docs/VALIDATION.md)
+[在线检查自己的转换结果](https://lydiatools.github.io/pdf-table-traps/try.html) · [查看实测报告](https://lydiatools.github.io/pdf-table-traps/)（右上角切换中文） · [English](README.md) · [下载最新版本](https://github.com/LydiaTools/pdf-table-traps/releases/latest) · [验证范围](docs/VALIDATION.md)
 
 ![真实报告：原件单价为 64.00，输出的单价列却是 12.5](docs/assets/report-zh.png)
 
@@ -19,6 +19,7 @@
 - 2 条默认本地提取路径、6 份实测报告，保留原件、输出、版本与哈希。
 - 另附 pdf-inspector 1.25.2 接入示例，在相同 PDF 上保留原始输出并可用 CLI 复现。[操作说明](docs/PDF_INSPECTOR.zh-CN.md)。
 - 按“行标识 + 列名”检查值；数字出现在别处不能冒充检查通过。
+- 可选位置文本提取：手动指定页面区域和列边界，将简单的单行表格按页输出为 JSON，并保留页码与行位置。[试用双页样本](docs/POSITIONAL_COLUMNS.zh-CN.md#试用位置文本提取)。
 - 缺行、重复名称、缺列、歧义或不支持的结构会显示需要核查。
 - 命令行、JSON 与独立 HTML 报告；检查已保存输出不需要转换器、模型密钥或服务器。
 - 浏览器内单元格检查：粘贴 Markdown 结果，对照原件核验一个行标识、列名和值。只在当前标签页检查，不解析 PDF，也不上传文本。
