@@ -2,7 +2,7 @@
 
 **数字一个没少，单价却跑到了错误的列里。**
 
-3 份原创 PDF、明确到行和列的预期值，以及可以复跑的转换结果。先验证关键值还对应谁，再把 Markdown 送进 AI、搜索或数据处理流程。
+3 份实测的原创 PDF、明确到行和列的预期值，以及可以复跑的转换结果。先验证关键值还对应谁，再把 Markdown 送进 AI、搜索或数据处理流程。
 
 [在线检查自己的转换结果](https://lydiatools.github.io/pdf-table-traps/try.html) · [查看实测报告](https://lydiatools.github.io/pdf-table-traps/)（右上角切换中文） · [English](README.md) · [下载 v0.1.0](https://github.com/LydiaTools/pdf-table-traps/releases/tag/v0.1.0) · [验证范围](docs/VALIDATION.md)
 
@@ -15,6 +15,7 @@
 ## 能做什么
 
 - 3 份原创样本：有边框表格、名称跨行的无边框表格、不应变成表格的正文。
+- 另有双页位置文本案例：[查看 PDF 坐标相同，提取后的字符列为何可能偏移](docs/POSITIONAL_COLUMNS.zh-CN.md)。它不属于六份转换器实测报告，也不在旧版 v0.1.0 ZIP 中。
 - 2 条默认本地提取路径、6 份实测报告，保留原件、输出、版本与哈希。
 - 另附 pdf-inspector 1.25.2 接入示例，在相同 PDF 上保留原始输出并可用 CLI 复现。[操作说明](docs/PDF_INSPECTOR.zh-CN.md)。
 - 按“行标识 + 列名”检查值；数字出现在别处不能冒充检查通过。
