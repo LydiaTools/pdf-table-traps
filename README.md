@@ -4,7 +4,7 @@
 
 Three measured original PDFs, explicit row-and-column checks, and outputs you can reproduce before trusting a PDF-to-Markdown pipeline.
 
-[Try your own output](https://lydiatools.github.io/pdf-table-traps/try.html) · [See the measured reports](https://lydiatools.github.io/pdf-table-traps/) · [中文](README.zh-CN.md) · [Download latest release](https://github.com/LydiaTools/pdf-table-traps/releases/latest) · [What was tested](docs/VALIDATION.md)
+[Try your own output](https://lydiatools.github.io/pdf-table-traps/try.html) · [See the measured reports](https://lydiatools.github.io/pdf-table-traps/) · [中文](README.zh-CN.md) · [Download v0.2.0 preview](https://github.com/LydiaTools/pdf-table-traps/releases/tag/v0.2.0) · [What was tested](docs/VALIDATION.md)
 
 ![Actual report: the source price is 64.00, but the parsed Unit price cell contains 12.5](docs/assets/report-en.png)
 

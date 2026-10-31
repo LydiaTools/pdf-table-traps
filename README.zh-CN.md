@@ -4,7 +4,7 @@
 
 3 份实测的原创 PDF、明确到行和列的预期值，以及可以复跑的转换结果。先验证关键值还对应谁，再把 Markdown 送进 AI、搜索或数据处理流程。
 
-[在线检查自己的转换结果](https://lydiatools.github.io/pdf-table-traps/try.html) · [查看实测报告](https://lydiatools.github.io/pdf-table-traps/)（右上角切换中文） · [English](README.md) · [下载最新版本](https://github.com/LydiaTools/pdf-table-traps/releases/latest) · [验证范围](docs/VALIDATION.md)
+[在线检查自己的转换结果](https://lydiatools.github.io/pdf-table-traps/try.html) · [查看实测报告](https://lydiatools.github.io/pdf-table-traps/)（右上角切换中文） · [English](README.md) · [下载 v0.2.0 预览版](https://github.com/LydiaTools/pdf-table-traps/releases/tag/v0.2.0) · [验证范围](docs/VALIDATION.md)
 
 ![真实报告：原件单价为 64.00，输出的单价列却是 12.5](docs/assets/report-zh.png)
 
